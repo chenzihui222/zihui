@@ -1,0 +1,32 @@
+---
+const skills = [
+  { category: "编程语言", items: ["Python", "JavaScript", "TypeScript"] },
+  { category: "前端开发", items: ["HTML", "CSS", "Astro", "React"] },
+  { category: "工具", items: ["Git", "GitHub", "VS Code"] },
+  { category: "其他", items: ["数据分析", "文档编写", "项目管理"] }
+];
+---
+
+<section id="skills" class="py-20 bg-white">
+	<div class="container mx-auto px-6">
+		<div class="text-center mb-12">
+			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">技能专长</h2>
+			<div class="w-20 h-1 bg-blue-600 mx-auto rounded"></div>
+		</div>
+		
+		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+			{skills.map((skillGroup) => (
+				<div class="bg-gray-50 rounded-xl p-6">
+					<h3 class="text-lg font-bold text-gray-900 mb-4">{skillGroup.category}</h3>
+					<div class="flex flex-wrap gap-2">
+						{skillGroup.items.map((skill) => (
+							<span class="px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm rounded-lg shadow-sm">
+								{skill}
+							</span>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,58 @@
+---
+const projects = [
+  {
+    name: "Reading-Notes",
+    description: "个人阅读笔记整理项目，记录学习心得",
+    tech: ["Python"],
+    link: "https://github.com/chenzihui222/Reading-Notes"
+  },
+  {
+    name: "News-about-VC",
+    description: "风险投资相关新闻收集与分析项目",
+    tech: ["Python"],
+    link: "https://github.com/chenzihui222/News-about-VC"
+  },
+  {
+    name: "zihui",
+    description: "个人项目和实验集合",
+    tech: ["JavaScript"],
+    link: "https://github.com/chenzihui222/zihui"
+  }
+];
+---
+
+<section id="projects" class="py-20 bg-gray-50">
+	<div class="container mx-auto px-6">
+		<div class="text-center mb-12">
+			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">我的项目</h2>
+			<div class="w-20 h-1 bg-blue-600 mx-auto rounded"></div>
+		</div>
+		
+		<div class="grid md:grid-cols-3 gap-8">
+			{projects.map((project) => (
+				<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+					<div class="p-6">
+						<h3 class="text-xl font-bold text-gray-900 mb-2">{project.name}</h3>
+						<p class="text-gray-600 mb-4">{project.description}</p>
+						<div class="flex flex-wrap gap-2 mb-4">
+							{project.tech.map((tech) => (
+								<span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">{tech}</span>
+							))}
+						</div>
+						<a 
+							href={project.link} 
+							target="_blank" 
+							rel="noopener noreferrer"
+							class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+						>
+							查看项目
+							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

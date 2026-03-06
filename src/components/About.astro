@@ -1,0 +1,27 @@
+---
+const bio = "热衷于研究新技术和个人项目开发，探索创新解决方案。";
+const interests = ["阅读笔记", "风险投资新闻分析", "个人项目开发", "技术研究"];
+---
+
+<section id="about" class="py-20 bg-white">
+	<div class="container mx-auto px-6">
+		<div class="text-center mb-12">
+			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">关于我</h2>
+			<div class="w-20 h-1 bg-blue-600 mx-auto rounded"></div>
+		</div>
+		
+		<div class="max-w-3xl mx-auto text-center">
+			<p class="text-lg text-gray-600 mb-8 leading-relaxed">
+				{bio}
+			</p>
+			
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+				{interests.map((interest) => (
+					<div class="p-4 bg-gray-50 rounded-lg border border-gray-100">
+						<p class="font-medium text-gray-700">{interest}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
