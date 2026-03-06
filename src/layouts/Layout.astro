@@ -21,9 +21,56 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 	</head>
 	<body class="bg-base text-text-primary font-display antialiased leading-relaxed">
 		<div class="accent-bar"></div>
+
+		<!-- Interactive background canvas -->
+		<canvas id="bg-canvas"></canvas>
+
+		<!-- Mouse-following gradient glow -->
+		<div id="mouse-glow"></div>
+
 		<slot />
 
 		<style is:global>
+			#bg-canvas {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
+				pointer-events: none;
+			}
+
+			#mouse-glow {
+				position: fixed;
+				width: 600px;
+				height: 600px;
+				border-radius: 50%;
+				pointer-events: none;
+				z-index: 0;
+				background: radial-gradient(
+					circle,
+					rgba(243, 128, 32, 0.06) 0%,
+					rgba(243, 128, 32, 0.02) 30%,
+					rgba(37, 99, 235, 0.015) 60%,
+					transparent 100%
+				);
+				transform: translate(-50%, -50%);
+				transition: left 0.3s ease-out, top 0.3s ease-out, opacity 0.4s ease;
+				opacity: 0;
+				will-change: left, top;
+			}
+
+			#mouse-glow.active {
+				opacity: 1;
+			}
+
+			/* Ensure all content sits above background */
+			body > *:not(#bg-canvas):not(#mouse-glow):not(.accent-bar) {
+				position: relative;
+				z-index: 1;
+			}
+
 			.accent-bar {
 				position: fixed;
 				top: 0;
@@ -114,7 +161,152 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 		</style>
 
 		<script>
-			// Intersection Observer for scroll reveals
+			// ============ Interactive Dot Grid + Connection Lines ============
+			const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement;
+			const ctx = canvas.getContext('2d')!;
+
+			let width = 0;
+			let height = 0;
+			let mouseX = -1000;
+			let mouseY = -1000;
+			let dots: { x: number; y: number; baseX: number; baseY: number; vx: number; vy: number }[] = [];
+
+			const GRID_SPACING = 48;
+			const DOT_RADIUS = 1;
+			const MOUSE_RADIUS = 180;
+			const CONNECTION_RADIUS = 120;
+			const PUSH_FORCE = 18;
+			const RETURN_SPEED = 0.04;
+
+			function resize() {
+				width = canvas.width = window.innerWidth;
+				height = canvas.height = window.innerHeight;
+				initDots();
+			}
+
+			function initDots() {
+				dots = [];
+				const cols = Math.ceil(width / GRID_SPACING) + 1;
+				const rows = Math.ceil(height / GRID_SPACING) + 1;
+				const offsetX = (width - (cols - 1) * GRID_SPACING) / 2;
+				const offsetY = (height - (rows - 1) * GRID_SPACING) / 2;
+
+				for (let r = 0; r < rows; r++) {
+					for (let c = 0; c < cols; c++) {
+						const x = offsetX + c * GRID_SPACING;
+						const y = offsetY + r * GRID_SPACING;
+						dots.push({ x, y, baseX: x, baseY: y, vx: 0, vy: 0 });
+					}
+				}
+			}
+
+			function animate() {
+				ctx.clearRect(0, 0, width, height);
+
+				// Update dot positions — mouse pushes them, they spring back
+				for (const dot of dots) {
+					const dx = dot.x - mouseX;
+					const dy = dot.y - mouseY;
+					const dist = Math.sqrt(dx * dx + dy * dy);
+
+					if (dist < MOUSE_RADIUS && dist > 0) {
+						const force = (1 - dist / MOUSE_RADIUS) * PUSH_FORCE;
+						const angle = Math.atan2(dy, dx);
+						dot.vx += Math.cos(angle) * force * 0.06;
+						dot.vy += Math.sin(angle) * force * 0.06;
+					}
+
+					// Spring back to base position
+					dot.vx += (dot.baseX - dot.x) * RETURN_SPEED;
+					dot.vy += (dot.baseY - dot.y) * RETURN_SPEED;
+
+					// Damping
+					dot.vx *= 0.88;
+					dot.vy *= 0.88;
+
+					dot.x += dot.vx;
+					dot.y += dot.vy;
+				}
+
+				// Draw connection lines near mouse
+				for (let i = 0; i < dots.length; i++) {
+					const a = dots[i];
+					const distToMouse = Math.sqrt((a.x - mouseX) ** 2 + (a.y - mouseY) ** 2);
+					if (distToMouse > MOUSE_RADIUS * 1.5) continue;
+
+					for (let j = i + 1; j < dots.length; j++) {
+						const b = dots[j];
+						const distB = Math.sqrt((b.x - mouseX) ** 2 + (b.y - mouseY) ** 2);
+						if (distB > MOUSE_RADIUS * 1.5) continue;
+
+						const d = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+						if (d < CONNECTION_RADIUS) {
+							const alpha = (1 - d / CONNECTION_RADIUS) * 0.15 *
+								Math.min(1, 1 - Math.max(distToMouse, distB) / (MOUSE_RADIUS * 1.5));
+							ctx.beginPath();
+							ctx.moveTo(a.x, a.y);
+							ctx.lineTo(b.x, b.y);
+							ctx.strokeStyle = `rgba(243, 128, 32, ${alpha})`;
+							ctx.lineWidth = 0.6;
+							ctx.stroke();
+						}
+					}
+				}
+
+				// Draw dots
+				for (const dot of dots) {
+					const dx = dot.x - mouseX;
+					const dy = dot.y - mouseY;
+					const dist = Math.sqrt(dx * dx + dy * dy);
+
+					let alpha = 0.12;
+					let radius = DOT_RADIUS;
+					let color = '146, 155, 176'; // text-muted color
+
+					if (dist < MOUSE_RADIUS) {
+						const proximity = 1 - dist / MOUSE_RADIUS;
+						alpha = 0.12 + proximity * 0.6;
+						radius = DOT_RADIUS + proximity * 1.8;
+						// Blend from gray to orange as mouse gets closer
+						const r = Math.round(146 + (243 - 146) * proximity);
+						const g = Math.round(155 + (128 - 155) * proximity);
+						const b = Math.round(176 + (32 - 176) * proximity);
+						color = `${r}, ${g}, ${b}`;
+					}
+
+					ctx.beginPath();
+					ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+					ctx.fillStyle = `rgba(${color}, ${alpha})`;
+					ctx.fill();
+				}
+
+				requestAnimationFrame(animate);
+			}
+
+			// Mouse tracking
+			const glow = document.getElementById('mouse-glow')!;
+
+			document.addEventListener('mousemove', (e) => {
+				mouseX = e.clientX;
+				mouseY = e.clientY;
+
+				glow.style.left = e.clientX + 'px';
+				glow.style.top = e.clientY + 'px';
+				glow.classList.add('active');
+			});
+
+			document.addEventListener('mouseleave', () => {
+				mouseX = -1000;
+				mouseY = -1000;
+				glow.classList.remove('active');
+			});
+
+			// Init
+			window.addEventListener('resize', resize);
+			resize();
+			animate();
+
+			// ============ Scroll Reveal Observer ============
 			const observer = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
