@@ -1,58 +1,122 @@
 ---
 const projects = [
-  {
-    name: "Reading-Notes",
-    description: "个人阅读笔记整理项目，记录学习心得",
-    tech: ["Python"],
-    link: "https://github.com/chenzihui222/Reading-Notes"
-  },
-  {
-    name: "News-about-VC",
-    description: "风险投资相关新闻收集与分析项目",
-    tech: ["Python"],
-    link: "https://github.com/chenzihui222/News-about-VC"
-  },
-  {
-    name: "zihui",
-    description: "个人项目和实验集合",
-    tech: ["JavaScript"],
-    link: "https://github.com/chenzihui222/zihui"
-  }
+	{
+		name: "VC Radar",
+		description: "Real-time aggregation platform tracking insights from top VCs and tech leaders. Automated crawling, keyword extraction, and intelligent categorization.",
+		tech: ["React", "Cloudflare Workers", "D1"],
+		link: "https://vc.zihuichen.com",
+		github: "https://github.com/chenzihui222/News-about-VC",
+		color: "#f38020",
+		status: "LIVE",
+	},
+	{
+		name: "Zihui Notes",
+		description: "Personal quick-capture note-taking tool with GitHub OAuth login and like interactions.",
+		tech: ["React", "Cloudflare Workers", "D1"],
+		link: "https://notes.zihuichen.com",
+		github: "https://github.com/chenzihui222/Reading-Notes",
+		color: "#059669",
+		status: "ACTIVE",
+	},
+	{
+		name: "Personal Lab",
+		description: "Collection of experiments, prototypes, and explorations across web development and automation.",
+		tech: ["JavaScript", "Astro", "TypeScript"],
+		link: "https://github.com/chenzihui222/zihui",
+		github: "https://github.com/chenzihui222/zihui",
+		color: "#2563eb",
+		status: "ONGOING",
+	},
 ];
 ---
 
-<section id="projects" class="py-20 bg-gray-50">
-	<div class="container mx-auto px-6">
-		<div class="text-center mb-12">
-			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">我的项目</h2>
-			<div class="w-20 h-1 bg-blue-600 mx-auto rounded"></div>
+<section id="projects" class="relative">
+	<div class="max-w-[1400px] mx-auto px-8 md:px-12 py-20">
+		<div class="reveal">
+			<div class="flex items-center gap-3 mb-2">
+				<div class="h-px flex-1 max-w-[40px] bg-accent"></div>
+				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">Portfolio</span>
+			</div>
+			<h2 class="text-[2rem] md:text-[2.5rem] font-bold tracking-[-0.03em] text-text-primary mb-12">
+				Projects<span class="text-accent">.</span>
+			</h2>
 		</div>
-		
-		<div class="grid md:grid-cols-3 gap-8">
-			{projects.map((project) => (
-				<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-					<div class="p-6">
-						<h3 class="text-xl font-bold text-gray-900 mb-2">{project.name}</h3>
-						<p class="text-gray-600 mb-4">{project.description}</p>
-						<div class="flex flex-wrap gap-2 mb-4">
-							{project.tech.map((tech) => (
-								<span class="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">{tech}</span>
-							))}
+
+		<div class="grid gap-4">
+			{projects.map((project, i) => (
+				<a
+					href={project.link}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="reveal project-card group"
+					style={`transition-delay: ${i * 0.1}s`}
+				>
+					<div class="flex items-start justify-between gap-6 flex-wrap">
+						<div class="flex-1 min-w-[280px]">
+							<div class="flex items-center gap-3 mb-3">
+								<span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${project.color}`}></span>
+								<h3 class="text-[1.15rem] font-bold text-text-primary tracking-[-0.01em] group-hover:text-accent transition-colors duration-150">
+									{project.name}
+								</h3>
+								<span class="font-mono text-[0.6rem] font-semibold tracking-[0.1em] px-2 py-[2px] rounded-[4px] border" style={`color: ${project.color}; border-color: ${project.color}30; background: ${project.color}08`}>
+									{project.status}
+								</span>
+							</div>
+							<p class="text-[0.88rem] text-text-secondary leading-relaxed mb-4 max-w-xl">
+								{project.description}
+							</p>
+							<div class="flex flex-wrap gap-2">
+								{project.tech.map((t) => (
+									<span class="font-mono text-[0.7rem] font-medium px-3 py-[3px] bg-elevated text-text-muted rounded-[6px] border border-border">
+										{t}
+									</span>
+								))}
+							</div>
 						</div>
-						<a 
-							href={project.link} 
-							target="_blank" 
-							rel="noopener noreferrer"
-							class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
-						>
-							查看项目
-							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<div class="flex items-center gap-2 text-text-muted group-hover:text-accent transition-colors duration-150 self-center">
+							<svg class="w-4 h-4 transition-transform duration-150 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
 							</svg>
-						</a>
+						</div>
 					</div>
-				</div>
+				</a>
 			))}
 		</div>
 	</div>
 </section>
+
+<style>
+	.project-card {
+		display: block;
+		background: #ffffff;
+		border: 1px solid #e0e3e8;
+		border-radius: 12px;
+		padding: 28px 28px;
+		transition: all 150ms ease;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	.project-card:hover {
+		border-color: #c5cad3;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+	}
+
+	.project-card:hover::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 3px;
+		height: 40%;
+		background: #f38020;
+		border-radius: 0 3px 3px 0;
+	}
+
+	.project-card {
+		position: relative;
+	}
+</style>

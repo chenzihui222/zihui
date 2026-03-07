@@ -1,28 +1,50 @@
 ---
-const skills = [
-  { category: "编程语言", items: ["Python", "JavaScript", "TypeScript"] },
-  { category: "前端开发", items: ["HTML", "CSS", "Astro", "React"] },
-  { category: "工具", items: ["Git", "GitHub", "VS Code"] },
-  { category: "其他", items: ["数据分析", "文档编写", "项目管理"] }
+const skillGroups = [
+	{
+		category: "Languages",
+		items: ["Python", "JavaScript", "TypeScript"],
+		color: "#f38020",
+	},
+	{
+		category: "Frontend",
+		items: ["Astro", "React", "HTML/CSS", "Tailwind"],
+		color: "#2563eb",
+	},
+	{
+		category: "Tools",
+		items: ["Git", "GitHub Actions", "VS Code", "Cloudflare"],
+		color: "#059669",
+	},
+	{
+		category: "Domains",
+		items: ["Data Analysis", "Finance Research", "VC Research", "Automation"],
+		color: "#7c3aed",
+	},
 ];
 ---
 
-<section id="skills" class="py-20 bg-white">
-	<div class="container mx-auto px-6">
-		<div class="text-center mb-12">
-			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">技能专长</h2>
-			<div class="w-20 h-1 bg-blue-600 mx-auto rounded"></div>
+<section id="skills" class="relative">
+	<div class="max-w-[1400px] mx-auto px-8 md:px-12 py-20">
+		<div class="reveal">
+			<div class="flex items-center gap-3 mb-2">
+				<div class="h-px flex-1 max-w-[40px] bg-accent"></div>
+				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">Capabilities</span>
+			</div>
+			<h2 class="text-[2rem] md:text-[2.5rem] font-bold tracking-[-0.03em] text-text-primary mb-12">
+				Skills<span class="text-accent">.</span>
+			</h2>
 		</div>
-		
-		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-			{skills.map((skillGroup) => (
-				<div class="bg-gray-50 rounded-xl p-6">
-					<h3 class="text-lg font-bold text-gray-900 mb-4">{skillGroup.category}</h3>
+
+		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+			{skillGroups.map((group, i) => (
+				<div class="reveal skill-group" style={`transition-delay: ${i * 0.08}s`}>
+					<div class="flex items-center gap-2 mb-5">
+						<span class="w-[6px] h-[6px] rounded-full flex-shrink-0" style={`background: ${group.color}`}></span>
+						<span class="font-mono text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-text-muted">{group.category}</span>
+					</div>
 					<div class="flex flex-wrap gap-2">
-						{skillGroup.items.map((skill) => (
-							<span class="px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm rounded-lg shadow-sm">
-								{skill}
-							</span>
+						{group.items.map((skill) => (
+							<span class="skill-tag">{skill}</span>
 						))}
 					</div>
 				</div>
@@ -30,3 +52,37 @@ const skills = [
 		</div>
 	</div>
 </section>
+
+<style>
+	.skill-group {
+		background: #ffffff;
+		border: 1px solid #e0e3e8;
+		border-radius: 12px;
+		padding: 24px 22px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+		transition: all 150ms ease;
+	}
+
+	.skill-group:hover {
+		border-color: #c5cad3;
+		transform: translateY(-2px);
+	}
+
+	.skill-tag {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.75rem;
+		font-weight: 500;
+		padding: 5px 12px;
+		background: #f5f6f8;
+		border: 1px solid #e0e3e8;
+		border-radius: 6px;
+		color: #5a6377;
+		transition: all 150ms ease;
+	}
+
+	.skill-tag:hover {
+		border-color: #f38020;
+		color: #f38020;
+		background: rgba(243, 128, 32, 0.05);
+	}
+</style>

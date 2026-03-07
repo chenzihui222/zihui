@@ -1,27 +1,72 @@
 ---
-const bio = "热衷于研究新技术和个人项目开发，探索创新解决方案。";
-const interests = ["阅读笔记", "风险投资新闻分析", "个人项目开发", "技术研究"];
+const focuses = [
+	{
+		label: "RESEARCH",
+		title: "Technology Research",
+		desc: "Deep dives into emerging tech trends, AI developments, and startup ecosystems.",
+		color: "#059669",
+	},
+	{
+		label: "ANALYSIS",
+		title: "VC News Analysis",
+		desc: "Tracking insights from top VCs like Paul Graham, Sam Altman, and Fred Wilson.",
+		color: "#2563eb",
+	},
+	{
+		label: "BUILD",
+		title: "Project Development",
+		desc: "Building open-source tools and automation systems for research workflows.",
+		color: "#f38020",
+	},
+	{
+		label: "LEARN",
+		title: "Quick Notes",
+		desc: "A personal note-taking tool for capturing ideas, insights, and references on the go.",
+		color: "#7c3aed",
+	},
+];
 ---
 
-<section id="about" class="py-20 bg-white">
-	<div class="container mx-auto px-6">
-		<div class="text-center mb-12">
-			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">关于我</h2>
-			<div class="w-20 h-1 bg-blue-600 mx-auto rounded"></div>
-		</div>
-		
-		<div class="max-w-3xl mx-auto text-center">
-			<p class="text-lg text-gray-600 mb-8 leading-relaxed">
-				{bio}
-			</p>
-			
-			<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-				{interests.map((interest) => (
-					<div class="p-4 bg-gray-50 rounded-lg border border-gray-100">
-						<p class="font-medium text-gray-700">{interest}</p>
-					</div>
-				))}
+<section id="about" class="relative">
+	<div class="max-w-[1400px] mx-auto px-8 md:px-12 py-20">
+		<div class="reveal">
+			<div class="flex items-center gap-3 mb-2">
+				<div class="h-px flex-1 max-w-[40px] bg-accent"></div>
+				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">What I Do</span>
 			</div>
+			<h2 class="text-[2rem] md:text-[2.5rem] font-bold tracking-[-0.03em] text-text-primary mb-12">
+				Focus Areas<span class="text-accent">.</span>
+			</h2>
+		</div>
+
+		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+			{focuses.map((focus, i) => (
+				<div class={`reveal focus-card`} style={`transition-delay: ${i * 0.08}s`}>
+					<div class="flex items-center gap-2 mb-4">
+						<span class="w-[6px] h-[6px] rounded-full flex-shrink-0" style={`background: ${focus.color}`}></span>
+						<span class="font-mono text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-text-muted">{focus.label}</span>
+					</div>
+					<h3 class="text-[1.05rem] font-bold text-text-primary mb-2 tracking-[-0.01em]">{focus.title}</h3>
+					<p class="text-[0.82rem] text-text-secondary leading-relaxed">{focus.desc}</p>
+				</div>
+			))}
 		</div>
 	</div>
 </section>
+
+<style>
+	.focus-card {
+		background: #ffffff;
+		border: 1px solid #e0e3e8;
+		border-radius: 12px;
+		padding: 24px 22px;
+		transition: all 150ms ease;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	}
+
+	.focus-card:hover {
+		border-color: #c5cad3;
+		transform: translateY(-3px);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+	}
+</style>
