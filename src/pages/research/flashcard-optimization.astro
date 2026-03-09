@@ -1,0 +1,494 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const sections = [
+	{
+		number: "01",
+		title: "Product Overview",
+		titleZh: "产品概览",
+		content: [
+			{ label: "Product Name", value: "Lulucat Flashcards (露露猫闪卡)" },
+			{ label: "Type", value: "Educational Web / Mobile Application" },
+			{ label: "Core Users", value: "University students, graduate students, exam candidates (IELTS, GRE, etc.)" },
+			{ label: "Market Position", value: "AI-powered intelligent memory learning tool for Chinese higher education" },
+			{ label: "Core Value", value: "Science-based spaced repetition system powered by FSRS algorithm" },
+			{ label: "Differentiator", value: "AI-driven smart flashcards + gamified reward mechanics" },
+		]
+	},
+	{
+		number: "02",
+		title: "Core Features",
+		titleZh: "核心功能与现状分析",
+		features: [
+			{ name: "AI Smart Flashcard Assistant", desc: "Built-in AI dialogue assistant for answering questions and generating memory prompts" },
+			{ name: "FSRS Spaced Repetition", desc: "Science-based algorithm that intelligently schedules review intervals" },
+			{ name: "Official Card Library", desc: "Pre-built card decks covering Economics, Management, Statistics and more" },
+			{ name: "Learning Analytics", desc: "Visual progress tracking, memory heatmaps, and study effect monitoring" },
+			{ name: "Diamond Reward System", desc: "Daily learning rewards, streak bonuses, free registration diamonds" },
+			{ name: "LaTeX Math Support", desc: "Full mathematical formula rendering for academic content" },
+		]
+	},
+];
+
+const competitors = [
+	{ name: "Anki", desc: "Open-source veteran flashcard software" },
+	{ name: "Quizlet", desc: "Internationally recognized learning platform" },
+	{ name: "Momo Words", desc: "Vertical vocabulary learning app" },
+	{ name: "BaiCiZhan", desc: "Visual vocabulary learning app" },
+];
+
+const advantages = [
+	"First commercial flashcard product in China integrating FSRS algorithm",
+	"Real-time AI assistant for learning support",
+	"Gamified incentive mechanism (diamond system)",
+	"Localized academic content (Chinese card decks for Economics, Management, etc.)",
+];
+
+const shortTerm = [
+	{ title: "Stability Optimization", desc: "Upgrade server architecture to resolve connection interruptions. Optimize at application, database, and caching layers." },
+	{ title: "Settings UI Adjustment", desc: "Reorder Balanced Mode and Simple Mode to match learning mode sequence." },
+	{ title: "Card Layout Improvement", desc: "Improve card layout proportions on the Study page for better visual harmony." },
+	{ title: "Content Expansion", desc: "Add card decks for Politics, Medicine, Law and other popular exam subjects beyond current 19 decks." },
+	{ title: "User Onboarding", desc: "Create a Lulucat guide character to walk new users through features with section-by-section tutorials." },
+	{ title: "Profile Enhancement", desc: "Add user deck sharing, rating system, and social-style daily sharing features." },
+];
+
+const midTerm = [
+	{ title: "Social Learning", desc: "Expand profiles with friend system, leaderboards, team study, and study groups." },
+	{ title: "Annual Learning Report", desc: "Auto-generate year-end reports with learning preference word clouds and study time analytics." },
+	{ title: "External Sharing", desc: "Share cards, decks, and annual reports to WeChat Moments, QQ Zone, and Weibo." },
+	{ title: "API Platform", desc: "Open APIs for third-party deck development and FSRS algorithm integration." },
+];
+
+const longTerm = [
+	{ title: "Deep AI Integration", desc: "AI auto-generation of flashcards and intelligent content recommendations." },
+	{ title: "Voice Interaction", desc: "Foreign language oral practice cards with scoring system." },
+	{ title: "Video Flashcards", desc: "Video explanations for core and complex knowledge points." },
+	{ title: "Enterprise Edition", desc: "Expand B2B market with customized solutions for institutions." },
+	{ title: "International Version", desc: "Multi-language support and card decks aligned with overseas textbook styles." },
+];
+---
+
+<Layout title="Lulucat Flashcards - Research Report" description="Product optimization and future outlook report for Lulucat Flashcards">
+	<main>
+		<article class="max-w-[900px] mx-auto px-8 md:px-12 pt-16 pb-24">
+			<!-- Back nav -->
+			<nav class="mb-12 animate-fade-up">
+				<a href="/" class="inline-flex items-center gap-2 text-[0.82rem] font-medium text-text-muted hover:text-accent transition-colors duration-150">
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+					</svg>
+					Back to Home
+				</a>
+			</nav>
+
+			<!-- Header -->
+			<header class="mb-16 animate-fade-up stagger-1">
+				<div class="flex items-center gap-3 mb-4">
+					<span class="w-2 h-2 rounded-full bg-[#7c3aed]"></span>
+					<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-[#7c3aed]">Research Report</span>
+				</div>
+				<h1 class="text-[2.2rem] md:text-[2.8rem] font-extrabold tracking-[-0.03em] text-text-primary leading-tight mb-3">
+					Lulucat Flashcards<span class="text-accent">.</span>
+				</h1>
+				<p class="text-[1.1rem] text-text-secondary mb-2">Product Optimization & Future Outlook Report</p>
+				<p class="text-[0.95rem] text-text-muted mb-6">《露露猫闪卡》产品优化与未来展望报告</p>
+				<div class="flex flex-wrap items-center gap-3">
+					<span class="font-mono text-[0.72rem] text-text-muted px-3 py-1 bg-elevated rounded-[6px] border border-border">Author: Zihui Chen</span>
+					<span class="font-mono text-[0.72rem] text-text-muted px-3 py-1 bg-elevated rounded-[6px] border border-border">2026</span>
+				</div>
+			</header>
+
+			<!-- TOC -->
+			<nav class="report-card mb-12 animate-fade-up stagger-2">
+				<h2 class="text-[0.82rem] font-mono font-semibold tracking-[0.1em] uppercase text-text-muted mb-4">Contents</h2>
+				<ol class="space-y-2">
+					<li><a href="#overview" class="toc-link"><span class="toc-num">01</span> Product Overview</a></li>
+					<li><a href="#features" class="toc-link"><span class="toc-num">02</span> Core Features</a></li>
+					<li><a href="#ux" class="toc-link"><span class="toc-num">03</span> User Experience & Feedback</a></li>
+					<li><a href="#market" class="toc-link"><span class="toc-num">04</span> Market & Competitive Analysis</a></li>
+					<li><a href="#optimization" class="toc-link"><span class="toc-num">05</span> Optimization Roadmap</a></li>
+					<li><a href="#future" class="toc-link"><span class="toc-num">06</span> Future Development</a></li>
+					<li><a href="#conclusion" class="toc-link"><span class="toc-num">07</span> Conclusion</a></li>
+				</ol>
+			</nav>
+
+			<!-- Section 1: Product Overview -->
+			<section id="overview" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">01</span>
+					<div>
+						<h2 class="section-title">Product Overview</h2>
+						<p class="section-subtitle">产品概览</p>
+					</div>
+				</div>
+				<div class="report-card">
+					<div class="grid gap-4">
+						{sections[0].content.map((item) => (
+							<div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+								<span class="font-mono text-[0.72rem] font-semibold text-text-muted tracking-wide uppercase min-w-[140px] flex-shrink-0">{item.label}</span>
+								<span class="text-[0.9rem] text-text-primary">{item.value}</span>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 2: Core Features -->
+			<section id="features" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">02</span>
+					<div>
+						<h2 class="section-title">Core Features</h2>
+						<p class="section-subtitle">核心功能与现状分析</p>
+					</div>
+				</div>
+				<div class="grid gap-3">
+					{sections[1].features.map((f) => (
+						<div class="report-card">
+							<h3 class="text-[0.95rem] font-bold text-text-primary mb-1">{f.name}</h3>
+							<p class="text-[0.85rem] text-text-secondary leading-relaxed">{f.desc}</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<!-- Section 3: UX & Feedback -->
+			<section id="ux" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">03</span>
+					<div>
+						<h2 class="section-title">User Experience & Feedback</h2>
+						<p class="section-subtitle">用户体验与反馈</p>
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3 mb-4">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">Interface Design</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> Clean, fresh visual style with theme switching</li>
+							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> Mobile-first responsive layout</li>
+							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> Card-based design, easy to browse</li>
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#2563eb] mb-3">User Flow</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> Simple registration (300 diamonds on signup)</li>
+							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> Clear learning path: Choose deck &rarr; Study &rarr; Review</li>
+							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> Optimized for micro-learning sessions</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">Positive Feedback</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li>Scientific and effective algorithm</li>
+							<li>Smooth mobile experience</li>
+							<li>LaTeX support for academic content</li>
+							<li>Diamond rewards create achievement feeling</li>
+							<li>Great for fragmented study time</li>
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">Areas for Improvement</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li>Server stability and connection reliability</li>
+							<li>Expand card deck coverage to more subjects</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 4: Market Analysis -->
+			<section id="market" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">04</span>
+					<div>
+						<h2 class="section-title">Market & Competitive Analysis</h2>
+						<p class="section-subtitle">市场与竞争分析</p>
+					</div>
+				</div>
+
+				<div class="report-card mb-4">
+					<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-text-muted mb-4">Competitive Landscape</h3>
+					<div class="grid sm:grid-cols-2 gap-3">
+						{competitors.map((c) => (
+							<div class="flex items-center gap-3 p-3 bg-elevated rounded-lg border border-border">
+								<span class="w-2 h-2 rounded-full bg-text-muted flex-shrink-0"></span>
+								<div>
+									<span class="text-[0.88rem] font-semibold text-text-primary">{c.name}</span>
+									<p class="text-[0.78rem] text-text-muted">{c.desc}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div class="report-card mb-4">
+					<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#7c3aed] mb-4">Key Advantages</h3>
+					<ul class="space-y-3">
+						{advantages.map((a) => (
+							<li class="flex gap-3 text-[0.88rem] text-text-secondary">
+								<span class="w-1.5 h-1.5 rounded-full bg-[#7c3aed] mt-2 flex-shrink-0"></span>
+								{a}
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">Market Opportunities</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li>Massive exam preparation market in China</li>
+							<li>AI + Education trend accelerating growth</li>
+							<li>FSRS algorithm adoption still in early stage</li>
+							<li>Lifelong learning and knowledge-payment acceptance rising</li>
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">Risks & Challenges</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li>Server stability and AI accuracy</li>
+							<li>Anki's established user habits create switching costs</li>
+							<li>Tightening regulations on educational apps</li>
+							<li>Need to cultivate consistent usage habits</li>
+							<li>Big tech entering AI education space</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 5: Optimization Roadmap -->
+			<section id="optimization" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">05</span>
+					<div>
+						<h2 class="section-title">Optimization Roadmap</h2>
+						<p class="section-subtitle">产品优化建议</p>
+					</div>
+				</div>
+
+				<!-- Short-term -->
+				<div class="mb-6">
+					<div class="flex items-center gap-3 mb-4">
+						<span class="timeline-badge bg-[#059669]">1-3 mo</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">Short-term Priorities</h3>
+					</div>
+					<div class="grid gap-3">
+						{shortTerm.map((item) => (
+							<div class="report-card">
+								<h4 class="text-[0.9rem] font-bold text-text-primary mb-1">{item.title}</h4>
+								<p class="text-[0.83rem] text-text-secondary leading-relaxed">{item.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<!-- Mid-term -->
+				<div class="mb-6">
+					<div class="flex items-center gap-3 mb-4">
+						<span class="timeline-badge bg-[#2563eb]">3-12 mo</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">Mid-term Goals</h3>
+					</div>
+					<div class="grid gap-3">
+						{midTerm.map((item) => (
+							<div class="report-card">
+								<h4 class="text-[0.9rem] font-bold text-text-primary mb-1">{item.title}</h4>
+								<p class="text-[0.83rem] text-text-secondary leading-relaxed">{item.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<!-- Long-term -->
+				<div>
+					<div class="flex items-center gap-3 mb-4">
+						<span class="timeline-badge bg-[#7c3aed]">1+ year</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">Long-term Vision</h3>
+					</div>
+					<div class="grid gap-3">
+						{longTerm.map((item) => (
+							<div class="report-card">
+								<h4 class="text-[0.9rem] font-bold text-text-primary mb-1">{item.title}</h4>
+								<p class="text-[0.83rem] text-text-secondary leading-relaxed">{item.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 6: Future Development -->
+			<section id="future" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">06</span>
+					<div>
+						<h2 class="section-title">Future Development</h2>
+						<p class="section-subtitle">未来发展与业务拓展</p>
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3 mb-4">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#2563eb] mb-3">Market Expansion</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li>Professionals: Business English, career skills</li>
+							<li>Overseas: Southeast Asia (Chinese-speaking), US/Europe (multilingual)</li>
+							<li>Verticals: Medicine, Law, IT certification</li>
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">Ecosystem & Partnerships</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li>University libraries and online education platforms</li>
+							<li>Deck marketplace with creator revenue sharing</li>
+							<li>Open API for FSRS algorithm integration</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">Business Model Evolution</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li>Current: Free + diamond in-app purchases</li>
+							<li>Future: Subscription (monthly/quarterly/annual)</li>
+							<li>Enterprise SaaS service</li>
+							<li>Paid premium card deck content</li>
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#7c3aed] mb-3">Strategic Vision (3-5 Years)</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							<li>Leading intelligent memory learning platform in China</li>
+							<li>FSRS algorithm benchmark in education</li>
+							<li>100,000+ learners across all disciplines</li>
+							<li>Complete "AI + Flashcard" education ecosystem</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 7: Conclusion -->
+			<section id="conclusion" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">07</span>
+					<div>
+						<h2 class="section-title">Conclusion</h2>
+						<p class="section-subtitle">总结</p>
+					</div>
+				</div>
+				<div class="report-card conclusion-card">
+					<p class="text-[0.92rem] text-text-secondary leading-[1.8] mb-4">
+						Lulucat Flashcards is an AI-driven flashcard learning application built on the FSRS spaced-repetition algorithm. Its core strength lies in combining cutting-edge memory science with AI technology, paired with gamified incentives, to deliver an efficient micro-learning solution for university students and exam candidates.
+					</p>
+					<p class="text-[0.92rem] text-text-secondary leading-[1.8]">
+						With the rapid growth of the AI education market and the spread of lifelong learning, Lulucat Flashcards is well-positioned to establish a leading role in the intelligent memory learning space — evolving from a single tool into a comprehensive learning platform through technological innovation and ecosystem building.
+					</p>
+				</div>
+			</section>
+
+			<!-- Back to home -->
+			<div class="text-center reveal">
+				<a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-card border border-border text-text-secondary text-[0.85rem] font-medium rounded-[8px] hover:border-accent hover:text-accent transition-all duration-150">
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+					</svg>
+					Back to Home
+				</a>
+			</div>
+		</article>
+	</main>
+</Layout>
+
+<style>
+	.report-card {
+		background: #ffffff;
+		border: 1px solid #e0e3e8;
+		border-radius: 12px;
+		padding: 24px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	}
+
+	.conclusion-card {
+		border-left: 3px solid #7c3aed;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		margin-bottom: 20px;
+	}
+
+	.section-num {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: #f38020;
+		background: rgba(243, 128, 32, 0.08);
+		border: 1px solid rgba(243, 128, 32, 0.2);
+		border-radius: 6px;
+		padding: 4px 10px;
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+
+	.section-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #1a1e2c;
+		tracking: -0.02em;
+		line-height: 1.2;
+	}
+
+	.section-subtitle {
+		font-size: 0.82rem;
+		color: #929bb0;
+		margin-top: 2px;
+	}
+
+	.timeline-badge {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.68rem;
+		font-weight: 600;
+		color: white;
+		padding: 3px 10px;
+		border-radius: 6px;
+		flex-shrink: 0;
+	}
+
+	.toc-link {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 8px 12px;
+		border-radius: 8px;
+		text-decoration: none;
+		color: #5a6377;
+		font-size: 0.88rem;
+		font-weight: 500;
+		transition: all 150ms ease;
+	}
+
+	.toc-link:hover {
+		background: #f0f1f4;
+		color: #f38020;
+	}
+
+	.toc-num {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: #929bb0;
+		min-width: 24px;
+	}
+
+	.toc-link:hover .toc-num {
+		color: #f38020;
+	}
+</style>

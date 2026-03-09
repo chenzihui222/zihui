@@ -1,0 +1,102 @@
+---
+const experiences = [
+	{
+		type: "RESEARCH",
+		title: "Lulucat Flashcards Product Optimization Report",
+		titleZh: "《露露猫闪卡》产品优化与未来展望报告",
+		description: "Comprehensive product analysis and optimization roadmap for an AI-powered flashcard learning app built on the FSRS spaced-repetition algorithm. Covers market positioning, competitive landscape, UX improvements, and long-term strategy.",
+		tags: ["Product Analysis", "FSRS Algorithm", "AI + Education", "Market Research"],
+		color: "#7c3aed",
+		date: "2026",
+		link: "/research/flashcard-optimization",
+	},
+];
+---
+
+<section id="experience" class="relative">
+	<div class="max-w-[1400px] mx-auto px-8 md:px-12 py-20">
+		<div class="reveal">
+			<div class="flex items-center gap-3 mb-2">
+				<div class="h-px flex-1 max-w-[40px] bg-accent"></div>
+				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">Experience</span>
+			</div>
+			<h2 class="text-[2rem] md:text-[2.5rem] font-bold tracking-[-0.03em] text-text-primary mb-12">
+				Research & Internships<span class="text-accent">.</span>
+			</h2>
+		</div>
+
+		<div class="grid gap-4">
+			{experiences.map((item, i) => (
+				<a
+					href={item.link}
+					class="reveal exp-card group"
+					style={`transition-delay: ${i * 0.1}s`}
+				>
+					<div class="flex items-start justify-between gap-6 flex-wrap">
+						<div class="flex-1 min-w-[280px]">
+							<div class="flex items-center gap-3 mb-3">
+								<span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${item.color}`}></span>
+								<h3 class="text-[1.15rem] font-bold text-text-primary tracking-[-0.01em] group-hover:text-accent transition-colors duration-150">
+									{item.title}
+								</h3>
+								<span class="font-mono text-[0.6rem] font-semibold tracking-[0.1em] px-2 py-[2px] rounded-[4px] border" style={`color: ${item.color}; border-color: ${item.color}30; background: ${item.color}08`}>
+									{item.type}
+								</span>
+							</div>
+							<p class="text-[0.82rem] text-text-muted mb-2 font-mono">{item.titleZh} &middot; {item.date}</p>
+							<p class="text-[0.88rem] text-text-secondary leading-relaxed mb-4 max-w-xl">
+								{item.description}
+							</p>
+							<div class="flex flex-wrap gap-2">
+								{item.tags.map((t) => (
+									<span class="font-mono text-[0.7rem] font-medium px-3 py-[3px] bg-elevated text-text-muted rounded-[6px] border border-border">
+										{t}
+									</span>
+								))}
+							</div>
+						</div>
+						<div class="flex items-center gap-2 text-text-muted group-hover:text-accent transition-colors duration-150 self-center">
+							<span class="font-mono text-[0.72rem] opacity-0 group-hover:opacity-100 transition-opacity duration-150">Read Report</span>
+							<svg class="w-4 h-4 transition-transform duration-150 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+							</svg>
+						</div>
+					</div>
+				</a>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.exp-card {
+		display: block;
+		position: relative;
+		background: #ffffff;
+		border: 1px solid #e0e3e8;
+		border-radius: 12px;
+		padding: 28px 28px;
+		transition: all 150ms ease;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	.exp-card:hover {
+		border-color: #c5cad3;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+	}
+
+	.exp-card:hover::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 3px;
+		height: 40%;
+		background: #7c3aed;
+		border-radius: 0 3px 3px 0;
+	}
+</style>
