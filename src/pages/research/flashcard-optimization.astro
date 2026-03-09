@@ -1,75 +1,64 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const sections = [
-	{
-		number: "01",
-		title: "Product Overview",
-		titleZh: "产品概览",
-		content: [
-			{ label: "Product Name", value: "Lulucat Flashcards (露露猫闪卡)" },
-			{ label: "Type", value: "Educational Web / Mobile Application" },
-			{ label: "Core Users", value: "University students, graduate students, exam candidates (IELTS, GRE, etc.)" },
-			{ label: "Market Position", value: "AI-powered intelligent memory learning tool for Chinese higher education" },
-			{ label: "Core Value", value: "Science-based spaced repetition system powered by FSRS algorithm" },
-			{ label: "Differentiator", value: "AI-driven smart flashcards + gamified reward mechanics" },
-		]
-	},
-	{
-		number: "02",
-		title: "Core Features",
-		titleZh: "核心功能与现状分析",
-		features: [
-			{ name: "AI Smart Flashcard Assistant", desc: "Built-in AI dialogue assistant for answering questions and generating memory prompts" },
-			{ name: "FSRS Spaced Repetition", desc: "Science-based algorithm that intelligently schedules review intervals" },
-			{ name: "Official Card Library", desc: "Pre-built card decks covering Economics, Management, Statistics and more" },
-			{ name: "Learning Analytics", desc: "Visual progress tracking, memory heatmaps, and study effect monitoring" },
-			{ name: "Diamond Reward System", desc: "Daily learning rewards, streak bonuses, free registration diamonds" },
-			{ name: "LaTeX Math Support", desc: "Full mathematical formula rendering for academic content" },
-		]
-	},
+const overview = [
+	{ label: "产品名称", value: "露露猫闪卡（Lulucat Flashcards）" },
+	{ label: "产品类型", value: "教育类 Web 应用 / 移动端应用" },
+	{ label: "核心用户", value: "大学生、研究生、备考学生（雅思、GRE 等）" },
+	{ label: "市场定位", value: "面向中国高等教育群体的智能记忆学习工具" },
+	{ label: "核心价值", value: "基于 FSRS 算法的科学间隔重复记忆系统" },
+	{ label: "差异化", value: "AI 驱动的智能闪卡学习 + 游戏化奖励机制" },
+];
+
+const features = [
+	{ name: "AI 智能闪卡助手", desc: "内置 AI 对话助手，解答学习疑问，生成记忆提示" },
+	{ name: "FSRS 间隔重复算法", desc: "基于科学的间隔重复算法，智能安排复习时间" },
+	{ name: "官方卡组库", desc: "涵盖经济学、管理学、统计学等学科的预制卡片" },
+	{ name: "学习统计分析", desc: "可视化学习进度、记忆热力图、追踪学习效果" },
+	{ name: "钻石奖励系统", desc: "每日学习奖励、连续学习奖励、免费注册赠送" },
+	{ name: "LaTeX 数学公式", desc: "支持学术内容中的数学公式渲染" },
 ];
 
 const competitors = [
-	{ name: "Anki", desc: "Open-source veteran flashcard software" },
-	{ name: "Quizlet", desc: "Internationally recognized learning platform" },
-	{ name: "Momo Words", desc: "Vertical vocabulary learning app" },
-	{ name: "BaiCiZhan", desc: "Visual vocabulary learning app" },
+	{ name: "Anki", desc: "老牌开源闪卡软件" },
+	{ name: "Quizlet", desc: "国际知名学习平台" },
+	{ name: "墨墨背单词", desc: "背单词垂直应用" },
+	{ name: "百词斩", desc: "视觉化词汇学习应用" },
 ];
 
 const advantages = [
-	"First commercial flashcard product in China integrating FSRS algorithm",
-	"Real-time AI assistant for learning support",
-	"Gamified incentive mechanism (diamond system)",
-	"Localized academic content (Chinese card decks for Economics, Management, etc.)",
+	"国内首款集成 FSRS 算法的商业闪卡产品",
+	"AI 助手提供实时学习支持",
+	"游戏化激励机制（钻石系统）",
+	"本土化学科内容（经济学、管理学等中文卡组）",
 ];
 
 const shortTerm = [
-	{ title: "Stability Optimization", desc: "Upgrade server architecture to resolve connection interruptions. Optimize at application, database, and caching layers." },
-	{ title: "Settings UI Adjustment", desc: "Reorder Balanced Mode and Simple Mode to match learning mode sequence." },
-	{ title: "Card Layout Improvement", desc: "Improve card layout proportions on the Study page for better visual harmony." },
-	{ title: "Content Expansion", desc: "Add card decks for Politics, Medicine, Law and other popular exam subjects beyond current 19 decks." },
-	{ title: "User Onboarding", desc: "Create a Lulucat guide character to walk new users through features with section-by-section tutorials." },
-	{ title: "Profile Enhancement", desc: "Add user deck sharing, rating system, and social-style daily sharing features." },
+	{ title: "稳定性优化", desc: "升级服务器架构，解决连接中断问题。从应用层优化、数据库架构、缓存层级方向出发提升用户体验。" },
+	{ title: "设置界面调整", desc: "调整【平衡模式】和【简单模式】排列顺序，使其对应学习模式排列次序。" },
+	{ title: "卡片布局优化", desc: "根据卡片内容占比改进【学习】页卡片布局合理性，提升美观度。" },
+	{ title: "卡组内容扩充", desc: "在现有 19 份卡组的基础上，增加政治、医学、法学等热门考试科目卡组。" },
+	{ title: "新手引导教程", desc: "创建露露猫引导小助手角色，以板块指引讲解形式协助新用户完成新手教程。" },
+	{ title: "个人主页优化", desc: "添加用户分享卡组、评价机制，可模拟社交软件做日常分享。" },
 ];
 
 const midTerm = [
-	{ title: "Social Learning", desc: "Expand profiles with friend system, leaderboards, team study, and study groups." },
-	{ title: "Annual Learning Report", desc: "Auto-generate year-end reports with learning preference word clouds and study time analytics." },
-	{ title: "External Sharing", desc: "Share cards, decks, and annual reports to WeChat Moments, QQ Zone, and Weibo." },
-	{ title: "API Platform", desc: "Open APIs for third-party deck development and FSRS algorithm integration." },
+	{ title: "社交学习功能", desc: "持续完善个人主页，增添【添加好友】功能，构建学习排行榜、组队学习、学习小组等互动机制。" },
+	{ title: "年度学习报告", desc: "年末自动生成学习年报，包含学习偏好词云、学习时长等板块。" },
+	{ title: "外部分享机制", desc: "添加卡片、卡组、学习年报等分享至微信朋友圈、QQ 空间、微博等外部平台，增加曝光度。" },
+	{ title: "API 开放平台", desc: "允许第三方开发卡组、集成 FSRS 算法。" },
 ];
 
 const longTerm = [
-	{ title: "Deep AI Integration", desc: "AI auto-generation of flashcards and intelligent content recommendations." },
-	{ title: "Voice Interaction", desc: "Foreign language oral practice cards with scoring system." },
-	{ title: "Video Flashcards", desc: "Video explanations for core and complex knowledge points." },
-	{ title: "Enterprise Edition", desc: "Expand B2B market with customized solutions for institutions." },
-	{ title: "International Version", desc: "Multi-language support and card decks aligned with overseas textbook styles." },
+	{ title: "AI 深度集成", desc: "AI 自动生成闪卡、智能推荐学习内容。" },
+	{ title: "语音交互", desc: "增加外语口语练习卡片，采取评分模式。" },
+	{ title: "视频闪卡", desc: "对核心、复杂知识点提供视频讲解功能。" },
+	{ title: "企业/教育机构版", desc: "拓宽 To B 市场，提供定制化解决方案。" },
+	{ title: "国际版", desc: "多语言支持，拓展海外市场，设计更贴合国外教材风格的卡组库。" },
 ];
 ---
 
-<Layout title="Lulucat Flashcards - Research Report" description="Product optimization and future outlook report for Lulucat Flashcards">
+<Layout title="露露猫闪卡 — 产品优化报告" description="《露露猫闪卡》产品优化与未来展望报告">
 	<main>
 		<article class="max-w-[900px] mx-auto px-8 md:px-12 pt-16 pb-24">
 			<!-- Back nav -->
@@ -78,7 +67,7 @@ const longTerm = [
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
 					</svg>
-					Back to Home
+					返回主页
 				</a>
 			</nav>
 
@@ -89,27 +78,27 @@ const longTerm = [
 					<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-[#7c3aed]">Research Report</span>
 				</div>
 				<h1 class="text-[2.2rem] md:text-[2.8rem] font-extrabold tracking-[-0.03em] text-text-primary leading-tight mb-3">
-					Lulucat Flashcards<span class="text-accent">.</span>
+					露露猫闪卡<span class="text-accent">.</span>
 				</h1>
-				<p class="text-[1.1rem] text-text-secondary mb-2">Product Optimization & Future Outlook Report</p>
-				<p class="text-[0.95rem] text-text-muted mb-6">《露露猫闪卡》产品优化与未来展望报告</p>
+				<p class="text-[1.1rem] text-text-secondary mb-2">产品优化与未来展望报告</p>
+				<p class="text-[0.88rem] text-text-muted mb-6">Lulucat Flashcards — Product Optimization & Future Outlook Report</p>
 				<div class="flex flex-wrap items-center gap-3">
-					<span class="font-mono text-[0.72rem] text-text-muted px-3 py-1 bg-elevated rounded-[6px] border border-border">Author: Zihui Chen</span>
+					<span class="font-mono text-[0.72rem] text-text-muted px-3 py-1 bg-elevated rounded-[6px] border border-border">撰写人：陈紫慧</span>
 					<span class="font-mono text-[0.72rem] text-text-muted px-3 py-1 bg-elevated rounded-[6px] border border-border">2025</span>
 				</div>
 			</header>
 
 			<!-- TOC -->
 			<nav class="report-card mb-12 animate-fade-up stagger-2">
-				<h2 class="text-[0.82rem] font-mono font-semibold tracking-[0.1em] uppercase text-text-muted mb-4">Contents</h2>
+				<h2 class="text-[0.82rem] font-mono font-semibold tracking-[0.1em] uppercase text-text-muted mb-4">目录 Contents</h2>
 				<ol class="space-y-2">
-					<li><a href="#overview" class="toc-link"><span class="toc-num">01</span> Product Overview</a></li>
-					<li><a href="#features" class="toc-link"><span class="toc-num">02</span> Core Features</a></li>
-					<li><a href="#ux" class="toc-link"><span class="toc-num">03</span> User Experience & Feedback</a></li>
-					<li><a href="#market" class="toc-link"><span class="toc-num">04</span> Market & Competitive Analysis</a></li>
-					<li><a href="#optimization" class="toc-link"><span class="toc-num">05</span> Optimization Roadmap</a></li>
-					<li><a href="#future" class="toc-link"><span class="toc-num">06</span> Future Development</a></li>
-					<li><a href="#conclusion" class="toc-link"><span class="toc-num">07</span> Conclusion</a></li>
+					<li><a href="#overview" class="toc-link"><span class="toc-num">01</span> 产品概览 Product Overview</a></li>
+					<li><a href="#features" class="toc-link"><span class="toc-num">02</span> 核心功能 Core Features</a></li>
+					<li><a href="#ux" class="toc-link"><span class="toc-num">03</span> 用户体验与反馈 UX & Feedback</a></li>
+					<li><a href="#market" class="toc-link"><span class="toc-num">04</span> 市场与竞争分析 Market Analysis</a></li>
+					<li><a href="#optimization" class="toc-link"><span class="toc-num">05</span> 产品优化建议 Optimization Roadmap</a></li>
+					<li><a href="#future" class="toc-link"><span class="toc-num">06</span> 未来发展 Future Development</a></li>
+					<li><a href="#conclusion" class="toc-link"><span class="toc-num">07</span> 总结 Conclusion</a></li>
 				</ol>
 			</nav>
 
@@ -118,15 +107,15 @@ const longTerm = [
 				<div class="section-header">
 					<span class="section-num">01</span>
 					<div>
-						<h2 class="section-title">Product Overview</h2>
-						<p class="section-subtitle">产品概览</p>
+						<h2 class="section-title">产品概览</h2>
+						<p class="section-subtitle">Product Overview</p>
 					</div>
 				</div>
 				<div class="report-card">
 					<div class="grid gap-4">
-						{sections[0].content.map((item) => (
+						{overview.map((item) => (
 							<div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-								<span class="font-mono text-[0.72rem] font-semibold text-text-muted tracking-wide uppercase min-w-[140px] flex-shrink-0">{item.label}</span>
+								<span class="font-mono text-[0.72rem] font-semibold text-text-muted tracking-wide min-w-[100px] flex-shrink-0">{item.label}</span>
 								<span class="text-[0.9rem] text-text-primary">{item.value}</span>
 							</div>
 						))}
@@ -139,12 +128,12 @@ const longTerm = [
 				<div class="section-header">
 					<span class="section-num">02</span>
 					<div>
-						<h2 class="section-title">Core Features</h2>
-						<p class="section-subtitle">核心功能与现状分析</p>
+						<h2 class="section-title">核心功能与现状分析</h2>
+						<p class="section-subtitle">Core Features & Current Status</p>
 					</div>
 				</div>
 				<div class="grid gap-3">
-					{sections[1].features.map((f) => (
+					{features.map((f) => (
 						<div class="report-card">
 							<h3 class="text-[0.95rem] font-bold text-text-primary mb-1">{f.name}</h3>
 							<p class="text-[0.85rem] text-text-secondary leading-relaxed">{f.desc}</p>
@@ -158,46 +147,46 @@ const longTerm = [
 				<div class="section-header">
 					<span class="section-num">03</span>
 					<div>
-						<h2 class="section-title">User Experience & Feedback</h2>
-						<p class="section-subtitle">用户体验与反馈</p>
+						<h2 class="section-title">用户体验与反馈</h2>
+						<p class="section-subtitle">User Experience & Feedback</p>
 					</div>
 				</div>
 
 				<div class="grid md:grid-cols-2 gap-3 mb-4">
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">Interface Design</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">界面设计 UI</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> Clean, fresh visual style with theme switching</li>
-							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> Mobile-first responsive layout</li>
-							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> Card-based design, easy to browse</li>
+							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> 简洁清新的视觉风格，支持多主题切换</li>
+							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> 移动优先设计，响应式布局</li>
+							<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> 卡片式设计，易于浏览</li>
 						</ul>
 					</div>
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#2563eb] mb-3">User Flow</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#2563eb] mb-3">操作流程 UX</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> Simple registration (300 diamonds on signup)</li>
-							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> Clear learning path: Choose deck &rarr; Study &rarr; Review</li>
-							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> Optimized for micro-learning sessions</li>
+							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> 注册流程简单（免费注册赠 300 钻石）</li>
+							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> 学习路径清晰：选择卡组 &rarr; 开始学习 &rarr; 复习提醒</li>
+							<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> 支持碎片时间学习，充分利用移动端</li>
 						</ul>
 					</div>
 				</div>
 
 				<div class="grid md:grid-cols-2 gap-3">
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">Positive Feedback</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">正面反馈</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li>Scientific and effective algorithm</li>
-							<li>Smooth mobile experience</li>
-							<li>LaTeX support for academic content</li>
-							<li>Diamond rewards create achievement feeling</li>
-							<li>Great for fragmented study time</li>
+							<li>算法科学有效，记忆效果显著</li>
+							<li>移动端体验流畅</li>
+							<li>LaTeX 支持学术内容渲染</li>
+							<li>钻石奖励机制有成就感</li>
+							<li>碎片时间利用率高</li>
 						</ul>
 					</div>
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">Areas for Improvement</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">待改进</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li>Server stability and connection reliability</li>
-							<li>Expand card deck coverage to more subjects</li>
+							<li>页面连接偶尔不稳定，需优化服务器稳定性</li>
+							<li>卡组覆盖范围有待扩展</li>
 						</ul>
 					</div>
 				</div>
@@ -208,13 +197,13 @@ const longTerm = [
 				<div class="section-header">
 					<span class="section-num">04</span>
 					<div>
-						<h2 class="section-title">Market & Competitive Analysis</h2>
-						<p class="section-subtitle">市场与竞争分析</p>
+						<h2 class="section-title">市场与竞争分析</h2>
+						<p class="section-subtitle">Market & Competitive Analysis</p>
 					</div>
 				</div>
 
 				<div class="report-card mb-4">
-					<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-text-muted mb-4">Competitive Landscape</h3>
+					<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-text-muted mb-4">竞争格局</h3>
 					<div class="grid sm:grid-cols-2 gap-3">
 						{competitors.map((c) => (
 							<div class="flex items-center gap-3 p-3 bg-elevated rounded-lg border border-border">
@@ -229,7 +218,7 @@ const longTerm = [
 				</div>
 
 				<div class="report-card mb-4">
-					<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#7c3aed] mb-4">Key Advantages</h3>
+					<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#7c3aed] mb-4">差异化优势</h3>
 					<ul class="space-y-3">
 						{advantages.map((a) => (
 							<li class="flex gap-3 text-[0.88rem] text-text-secondary">
@@ -242,22 +231,22 @@ const longTerm = [
 
 				<div class="grid md:grid-cols-2 gap-3">
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">Market Opportunities</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">市场机会</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li>Massive exam preparation market in China</li>
-							<li>AI + Education trend accelerating growth</li>
-							<li>FSRS algorithm adoption still in early stage</li>
-							<li>Lifelong learning and knowledge-payment acceptance rising</li>
+							<li>考研、考公、考证人群庞大，记忆需求旺盛</li>
+							<li>AI + 教育趋势，智能学习工具市场增长</li>
+							<li>国内 FSRS 算法应用尚属蓝海</li>
+							<li>终身学习趋势，知识付费接受度高</li>
 						</ul>
 					</div>
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">Risks & Challenges</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">风险与挑战</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li>Server stability and AI accuracy</li>
-							<li>Anki's established user habits create switching costs</li>
-							<li>Tightening regulations on educational apps</li>
-							<li>Need to cultivate consistent usage habits</li>
-							<li>Big tech entering AI education space</li>
+							<li>服务器稳定性、AI 助手准确性</li>
+							<li>Anki 等竞品已建立用户习惯，迁移成本高</li>
+							<li>教育类 App 监管趋严</li>
+							<li>需要培养用户坚持使用的习惯</li>
+							<li>大厂入局 AI 教育领域</li>
 						</ul>
 					</div>
 				</div>
@@ -268,16 +257,16 @@ const longTerm = [
 				<div class="section-header">
 					<span class="section-num">05</span>
 					<div>
-						<h2 class="section-title">Optimization Roadmap</h2>
-						<p class="section-subtitle">产品优化建议</p>
+						<h2 class="section-title">产品优化建议</h2>
+						<p class="section-subtitle">Optimization Roadmap</p>
 					</div>
 				</div>
 
 				<!-- Short-term -->
 				<div class="mb-6">
 					<div class="flex items-center gap-3 mb-4">
-						<span class="timeline-badge bg-[#059669]">1-3 mo</span>
-						<h3 class="text-[0.95rem] font-bold text-text-primary">Short-term Priorities</h3>
+						<span class="timeline-badge bg-[#059669]">1-3 月</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">短期优化</h3>
 					</div>
 					<div class="grid gap-3">
 						{shortTerm.map((item) => (
@@ -292,8 +281,8 @@ const longTerm = [
 				<!-- Mid-term -->
 				<div class="mb-6">
 					<div class="flex items-center gap-3 mb-4">
-						<span class="timeline-badge bg-[#2563eb]">3-12 mo</span>
-						<h3 class="text-[0.95rem] font-bold text-text-primary">Mid-term Goals</h3>
+						<span class="timeline-badge bg-[#2563eb]">3-12 月</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">中期优化</h3>
 					</div>
 					<div class="grid gap-3">
 						{midTerm.map((item) => (
@@ -308,8 +297,8 @@ const longTerm = [
 				<!-- Long-term -->
 				<div>
 					<div class="flex items-center gap-3 mb-4">
-						<span class="timeline-badge bg-[#7c3aed]">1+ year</span>
-						<h3 class="text-[0.95rem] font-bold text-text-primary">Long-term Vision</h3>
+						<span class="timeline-badge bg-[#7c3aed]">1 年+</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">长期优化</h3>
 					</div>
 					<div class="grid gap-3">
 						{longTerm.map((item) => (
@@ -327,47 +316,47 @@ const longTerm = [
 				<div class="section-header">
 					<span class="section-num">06</span>
 					<div>
-						<h2 class="section-title">Future Development</h2>
-						<p class="section-subtitle">未来发展与业务拓展</p>
+						<h2 class="section-title">未来发展与业务拓展</h2>
+						<p class="section-subtitle">Future Development & Business Expansion</p>
 					</div>
 				</div>
 
 				<div class="grid md:grid-cols-2 gap-3 mb-4">
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#2563eb] mb-3">Market Expansion</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#2563eb] mb-3">市场拓展</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li>Professionals: Business English, career skills</li>
-							<li>Overseas: Southeast Asia (Chinese-speaking), US/Europe (multilingual)</li>
-							<li>Verticals: Medicine, Law, IT certification</li>
+							<li>新用户群：职场人士（商务英语、职业技能）</li>
+							<li>海外市场：东南亚华语区、欧美多语言版</li>
+							<li>行业垂直领域：医学、法律、IT 认证</li>
 						</ul>
 					</div>
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">Ecosystem & Partnerships</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">生态建设与合作</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li>University libraries and online education platforms</li>
-							<li>Deck marketplace with creator revenue sharing</li>
-							<li>Open API for FSRS algorithm integration</li>
+							<li>合作伙伴：高校图书馆、在线教育平台（B站、知乎）</li>
+							<li>平台生态：卡组市场、创作者分成</li>
+							<li>API 开放：允许其他教育产品集成 FSRS 算法</li>
 						</ul>
 					</div>
 				</div>
 
 				<div class="grid md:grid-cols-2 gap-3">
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">Business Model Evolution</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">商业模式升级</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li>Current: Free + diamond in-app purchases</li>
-							<li>Future: Subscription (monthly/quarterly/annual)</li>
-							<li>Enterprise SaaS service</li>
-							<li>Paid premium card deck content</li>
+							<li>当前：免费 + 钻石内购</li>
+							<li>未来：订阅制会员（月/季/年）</li>
+							<li>企业版 SaaS 服务</li>
+							<li>卡组内容付费</li>
 						</ul>
 					</div>
 					<div class="report-card">
-						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#7c3aed] mb-3">Strategic Vision (3-5 Years)</h3>
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#7c3aed] mb-3">战略愿景（3-5 年）</h3>
 						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
-							<li>Leading intelligent memory learning platform in China</li>
-							<li>FSRS algorithm benchmark in education</li>
-							<li>100,000+ learners across all disciplines</li>
-							<li>Complete "AI + Flashcard" education ecosystem</li>
+							<li>成为中国领先的智能记忆学习平台</li>
+							<li>FSRS 算法在教育领域的标杆应用</li>
+							<li>服务 10 万+ 学习者，覆盖全学科</li>
+							<li>建立完整的「AI + 闪卡」教育生态</li>
 						</ul>
 					</div>
 				</div>
@@ -378,16 +367,16 @@ const longTerm = [
 				<div class="section-header">
 					<span class="section-num">07</span>
 					<div>
-						<h2 class="section-title">Conclusion</h2>
-						<p class="section-subtitle">总结</p>
+						<h2 class="section-title">总结</h2>
+						<p class="section-subtitle">Conclusion</p>
 					</div>
 				</div>
 				<div class="report-card conclusion-card">
 					<p class="text-[0.92rem] text-text-secondary leading-[1.8] mb-4">
-						Lulucat Flashcards is an AI-driven flashcard learning application built on the FSRS spaced-repetition algorithm. Its core strength lies in combining cutting-edge memory science with AI technology, paired with gamified incentives, to deliver an efficient micro-learning solution for university students and exam candidates.
+						露露猫闪卡是一款基于 FSRS 科学算法的 AI 驱动闪卡学习应用，核心优势在于将前沿的记忆科学算法（间隔重复）与 AI 技术相结合，配合游戏化激励机制，为大学生和备考群体提供高效的碎片化学习解决方案。
 					</p>
 					<p class="text-[0.92rem] text-text-secondary leading-[1.8]">
-						With the rapid growth of the AI education market and the spread of lifelong learning, Lulucat Flashcards is well-positioned to establish a leading role in the intelligent memory learning space — evolving from a single tool into a comprehensive learning platform through technological innovation and ecosystem building.
+						随着 AI 教育市场快速增长和终身学习理念的普及，露露猫闪卡有望在智能记忆学习领域建立领先地位，通过技术创新和生态建设，从单一工具向综合学习平台演进。
 					</p>
 				</div>
 			</section>
@@ -398,7 +387,7 @@ const longTerm = [
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
 					</svg>
-					Back to Home
+					返回主页
 				</a>
 			</div>
 		</article>
