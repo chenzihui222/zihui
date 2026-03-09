@@ -1,13 +1,19 @@
 ---
+import type { Lang } from '../i18n';
+
 interface Props {
 	title?: string;
 	description?: string;
+	lang?: Lang;
 }
-const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' } = Astro.props;
+const { title = 'Zihui Chen', description = 'Independent Researcher & Builder', lang = 'zh' } = Astro.props;
+const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
+const altLang = lang === 'zh' ? 'en' : 'zh';
+const currentPath = Astro.url.pathname.replace(`/${lang}`, '');
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={htmlLang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -18,6 +24,8 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<link rel="alternate" hreflang={htmlLang} href={`https://zihuichen.com/${lang}${currentPath}`} />
+		<link rel="alternate" hreflang={altLang === 'zh' ? 'zh-CN' : 'en'} href={`https://zihuichen.com/${altLang}${currentPath}`} />
 	</head>
 	<body class="bg-base text-text-primary font-display antialiased leading-relaxed">
 		<div class="accent-bar"></div>
@@ -203,7 +211,6 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 			function animate() {
 				ctx.clearRect(0, 0, width, height);
 
-				// Update dot positions — mouse pushes them, they spring back
 				for (const dot of dots) {
 					const dx = dot.x - mouseX;
 					const dy = dot.y - mouseY;
@@ -216,19 +223,14 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 						dot.vy += Math.sin(angle) * force * 0.06;
 					}
 
-					// Spring back to base position
 					dot.vx += (dot.baseX - dot.x) * RETURN_SPEED;
 					dot.vy += (dot.baseY - dot.y) * RETURN_SPEED;
-
-					// Damping
 					dot.vx *= 0.88;
 					dot.vy *= 0.88;
-
 					dot.x += dot.vx;
 					dot.y += dot.vy;
 				}
 
-				// Draw connection lines near mouse
 				for (let i = 0; i < dots.length; i++) {
 					const a = dots[i];
 					const distToMouse = Math.sqrt((a.x - mouseX) ** 2 + (a.y - mouseY) ** 2);
@@ -253,7 +255,6 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 					}
 				}
 
-				// Draw dots
 				for (const dot of dots) {
 					const dx = dot.x - mouseX;
 					const dy = dot.y - mouseY;
@@ -261,13 +262,12 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 
 					let alpha = 0.12;
 					let radius = DOT_RADIUS;
-					let color = '146, 155, 176'; // text-muted color
+					let color = '146, 155, 176';
 
 					if (dist < MOUSE_RADIUS) {
 						const proximity = 1 - dist / MOUSE_RADIUS;
 						alpha = 0.12 + proximity * 0.6;
 						radius = DOT_RADIUS + proximity * 1.8;
-						// Blend from gray to orange as mouse gets closer
 						const r = Math.round(146 + (243 - 146) * proximity);
 						const g = Math.round(155 + (128 - 155) * proximity);
 						const b = Math.round(176 + (32 - 176) * proximity);
@@ -283,13 +283,11 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 				requestAnimationFrame(animate);
 			}
 
-			// Mouse tracking
 			const glow = document.getElementById('mouse-glow')!;
 
 			document.addEventListener('mousemove', (e) => {
 				mouseX = e.clientX;
 				mouseY = e.clientY;
-
 				glow.style.left = e.clientX + 'px';
 				glow.style.top = e.clientY + 'px';
 				glow.classList.add('active');
@@ -301,7 +299,6 @@ const { title = 'Zihui Chen', description = 'Independent Researcher & Builder' }
 				glow.classList.remove('active');
 			});
 
-			// Init
 			window.addEventListener('resize', resize);
 			resize();
 			animate();

@@ -7,4 +7,11 @@ export default defineConfig({
   integrations: [tailwind()],
   site: 'https://zihuichen.com',
   base: '/',
+  i18n: {
+    defaultLocale: 'zh',
+    locales: ['zh', 'en'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
 });

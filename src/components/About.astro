@@ -1,30 +1,12 @@
 ---
-const focuses = [
-	{
-		label: "RESEARCH",
-		title: "Technology Research",
-		desc: "Deep dives into emerging tech trends, AI developments, and startup ecosystems.",
-		color: "#059669",
-	},
-	{
-		label: "ANALYSIS",
-		title: "VC News Analysis",
-		desc: "Tracking insights from top VCs like Paul Graham, Sam Altman, and Fred Wilson.",
-		color: "#2563eb",
-	},
-	{
-		label: "BUILD",
-		title: "Project Development",
-		desc: "Building open-source tools and automation systems for research workflows.",
-		color: "#f38020",
-	},
-	{
-		label: "LEARN",
-		title: "Quick Notes",
-		desc: "A personal note-taking tool for capturing ideas, insights, and references on the go.",
-		color: "#7c3aed",
-	},
-];
+import type { Translations } from '../i18n';
+
+interface Props {
+	t: Translations;
+}
+const { t } = Astro.props;
+
+const colors = ['#059669', '#2563eb', '#f38020', '#7c3aed'];
 ---
 
 <section id="about" class="relative">
@@ -32,18 +14,18 @@ const focuses = [
 		<div class="reveal">
 			<div class="flex items-center gap-3 mb-2">
 				<div class="h-px flex-1 max-w-[40px] bg-accent"></div>
-				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">What I Do</span>
+				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">{t.about.label}</span>
 			</div>
 			<h2 class="text-[2rem] md:text-[2.5rem] font-bold tracking-[-0.03em] text-text-primary mb-12">
-				Focus Areas<span class="text-accent">.</span>
+				{t.about.title}<span class="text-accent">.</span>
 			</h2>
 		</div>
 
 		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-			{focuses.map((focus, i) => (
-				<div class={`reveal focus-card`} style={`transition-delay: ${i * 0.08}s`}>
+			{t.about.focuses.map((focus, i) => (
+				<div class="reveal focus-card" style={`transition-delay: ${i * 0.08}s`}>
 					<div class="flex items-center gap-2 mb-4">
-						<span class="w-[6px] h-[6px] rounded-full flex-shrink-0" style={`background: ${focus.color}`}></span>
+						<span class="w-[6px] h-[6px] rounded-full flex-shrink-0" style={`background: ${colors[i]}`}></span>
 						<span class="font-mono text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-text-muted">{focus.label}</span>
 					</div>
 					<h3 class="text-[1.05rem] font-bold text-text-primary mb-2 tracking-[-0.01em]">{focus.title}</h3>

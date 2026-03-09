@@ -1,32 +1,16 @@
 ---
-const projects = [
-	{
-		name: "VC Radar",
-		description: "Real-time aggregation platform tracking insights from top VCs and tech leaders. Automated crawling, keyword extraction, and intelligent categorization.",
-		tech: ["React", "Cloudflare Workers", "D1"],
-		link: "https://vc.zihuichen.com",
-		github: "https://github.com/chenzihui222/News-about-VC",
-		color: "#f38020",
-		status: "LIVE",
-	},
-	{
-		name: "Zihui Notes",
-		description: "Personal quick-capture note-taking tool with GitHub OAuth login and like interactions.",
-		tech: ["React", "Cloudflare Workers", "D1"],
-		link: "https://notes.zihuichen.com",
-		github: "https://github.com/chenzihui222/Reading-Notes",
-		color: "#059669",
-		status: "ACTIVE",
-	},
-	{
-		name: "Personal Lab",
-		description: "Collection of experiments, prototypes, and explorations across web development and automation.",
-		tech: ["JavaScript", "Astro", "TypeScript"],
-		link: "https://github.com/chenzihui222/zihui",
-		github: "https://github.com/chenzihui222/zihui",
-		color: "#2563eb",
-		status: "ONGOING",
-	},
+import type { Translations } from '../i18n';
+
+interface Props {
+	t: Translations;
+}
+const { t } = Astro.props;
+
+const colors = ['#f38020', '#059669', '#2563eb'];
+const githubLinks = [
+	'https://github.com/chenzihui222/News-about-VC',
+	'https://github.com/chenzihui222/Reading-Notes',
+	'https://github.com/chenzihui222/zihui',
 ];
 ---
 
@@ -35,15 +19,15 @@ const projects = [
 		<div class="reveal">
 			<div class="flex items-center gap-3 mb-2">
 				<div class="h-px flex-1 max-w-[40px] bg-accent"></div>
-				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">Portfolio</span>
+				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">{t.projects.label}</span>
 			</div>
 			<h2 class="text-[2rem] md:text-[2.5rem] font-bold tracking-[-0.03em] text-text-primary mb-12">
-				Projects<span class="text-accent">.</span>
+				{t.projects.title}<span class="text-accent">.</span>
 			</h2>
 		</div>
 
 		<div class="grid gap-4">
-			{projects.map((project, i) => (
+			{t.projects.items.map((project, i) => (
 				<a
 					href={project.link}
 					target="_blank"
@@ -54,11 +38,11 @@ const projects = [
 					<div class="flex items-start justify-between gap-6 flex-wrap">
 						<div class="flex-1 min-w-[280px]">
 							<div class="flex items-center gap-3 mb-3">
-								<span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${project.color}`}></span>
+								<span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${colors[i]}`}></span>
 								<h3 class="text-[1.15rem] font-bold text-text-primary tracking-[-0.01em] group-hover:text-accent transition-colors duration-150">
 									{project.name}
 								</h3>
-								<span class="font-mono text-[0.6rem] font-semibold tracking-[0.1em] px-2 py-[2px] rounded-[4px] border" style={`color: ${project.color}; border-color: ${project.color}30; background: ${project.color}08`}>
+								<span class="font-mono text-[0.6rem] font-semibold tracking-[0.1em] px-2 py-[2px] rounded-[4px] border" style={`color: ${colors[i]}; border-color: ${colors[i]}30; background: ${colors[i]}08`}>
 									{project.status}
 								</span>
 							</div>
@@ -66,9 +50,9 @@ const projects = [
 								{project.description}
 							</p>
 							<div class="flex flex-wrap gap-2">
-								{project.tech.map((t) => (
+								{project.tech.map((tech) => (
 									<span class="font-mono text-[0.7rem] font-medium px-3 py-[3px] bg-elevated text-text-muted rounded-[6px] border border-border">
-										{t}
+										{tech}
 									</span>
 								))}
 							</div>
@@ -88,6 +72,7 @@ const projects = [
 <style>
 	.project-card {
 		display: block;
+		position: relative;
 		background: #ffffff;
 		border: 1px solid #e0e3e8;
 		border-radius: 12px;
@@ -114,9 +99,5 @@ const projects = [
 		height: 40%;
 		background: #f38020;
 		border-radius: 0 3px 3px 0;
-	}
-
-	.project-card {
-		position: relative;
 	}
 </style>

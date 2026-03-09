@@ -1,0 +1,434 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations, type Lang } from '../../../i18n';
+
+export function getStaticPaths() {
+	return [
+		{ params: { lang: 'zh' } },
+		{ params: { lang: 'en' } },
+	];
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+const r = t.research;
+const s = r.sections;
+const homeHref = `/${lang}/`;
+---
+
+<Layout title={`${r.reportTitle} — ${r.reportSubtitle}`} description={r.reportSubtitle} lang={lang}>
+	<main>
+		<article class="max-w-[900px] mx-auto px-8 md:px-12 pt-16 pb-24">
+			<!-- Back nav -->
+			<nav class="mb-12 animate-fade-up flex items-center justify-between">
+				<a href={homeHref} class="inline-flex items-center gap-2 text-[0.82rem] font-medium text-text-muted hover:text-accent transition-colors duration-150">
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+					</svg>
+					{r.backHome}
+				</a>
+				<a
+					href={`/${lang === 'zh' ? 'en' : 'zh'}/research/flashcard-optimization`}
+					class="text-[0.8rem] font-medium text-text-secondary hover:text-accent transition-colors duration-150 px-3 py-1 border border-border rounded-[6px] hover:border-accent"
+				>
+					{t.nav.langSwitch}
+				</a>
+			</nav>
+
+			<!-- Header -->
+			<header class="mb-16 animate-fade-up stagger-1">
+				<div class="flex items-center gap-3 mb-4">
+					<span class="w-2 h-2 rounded-full bg-[#7c3aed]"></span>
+					<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-[#7c3aed]">{r.reportLabel}</span>
+				</div>
+				<h1 class="text-[2.2rem] md:text-[2.8rem] font-extrabold tracking-[-0.03em] text-text-primary leading-tight mb-3">
+					{r.reportTitle}<span class="text-accent">.</span>
+				</h1>
+				<p class="text-[1.1rem] text-text-secondary mb-2">{r.reportSubtitle}</p>
+				{r.reportSubtitleEn && <p class="text-[0.88rem] text-text-muted mb-6">{r.reportSubtitleEn}</p>}
+				<div class="flex flex-wrap items-center gap-3">
+					<span class="font-mono text-[0.72rem] text-text-muted px-3 py-1 bg-elevated rounded-[6px] border border-border">{r.author}</span>
+					<span class="font-mono text-[0.72rem] text-text-muted px-3 py-1 bg-elevated rounded-[6px] border border-border">{r.year}</span>
+				</div>
+			</header>
+
+			<!-- TOC -->
+			<nav class="report-card mb-12 animate-fade-up stagger-2">
+				<h2 class="text-[0.82rem] font-mono font-semibold tracking-[0.1em] uppercase text-text-muted mb-4">{r.tocTitle}</h2>
+				<ol class="space-y-2">
+					{r.toc.map((item) => (
+						<li><a href={item.href} class="toc-link"><span class="toc-num">{item.num}</span> {item.label}</a></li>
+					))}
+				</ol>
+			</nav>
+
+			<!-- Section 1: Product Overview -->
+			<section id="overview" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">01</span>
+					<div>
+						<h2 class="section-title">{s.overview.title}</h2>
+						{s.overview.subtitle && <p class="section-subtitle">{s.overview.subtitle}</p>}
+					</div>
+				</div>
+				<div class="report-card">
+					<div class="grid gap-4">
+						{s.overview.items.map((item) => (
+							<div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+								<span class="font-mono text-[0.72rem] font-semibold text-text-muted tracking-wide min-w-[100px] flex-shrink-0">{item.label}</span>
+								<span class="text-[0.9rem] text-text-primary">{item.value}</span>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 2: Core Features -->
+			<section id="features" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">02</span>
+					<div>
+						<h2 class="section-title">{s.features.title}</h2>
+						{s.features.subtitle && <p class="section-subtitle">{s.features.subtitle}</p>}
+					</div>
+				</div>
+				<div class="grid gap-3">
+					{s.features.items.map((f) => (
+						<div class="report-card">
+							<h3 class="text-[0.95rem] font-bold text-text-primary mb-1">{f.name}</h3>
+							<p class="text-[0.85rem] text-text-secondary leading-relaxed">{f.desc}</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<!-- Section 3: UX & Feedback -->
+			<section id="ux" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">03</span>
+					<div>
+						<h2 class="section-title">{s.ux.title}</h2>
+						{s.ux.subtitle && <p class="section-subtitle">{s.ux.subtitle}</p>}
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3 mb-4">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">{s.ux.uiTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.ux.uiItems.map((item) => (
+								<li class="flex gap-2"><span class="text-[#059669] flex-shrink-0">+</span> {item}</li>
+							))}
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#2563eb] mb-3">{s.ux.uxTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.ux.uxItems.map((item) => (
+								<li class="flex gap-2"><span class="text-[#2563eb] flex-shrink-0">+</span> {item}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">{s.ux.positiveTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.ux.positiveItems.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">{s.ux.negativeTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.ux.negativeItems.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 4: Market Analysis -->
+			<section id="market" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">04</span>
+					<div>
+						<h2 class="section-title">{s.market.title}</h2>
+						{s.market.subtitle && <p class="section-subtitle">{s.market.subtitle}</p>}
+					</div>
+				</div>
+
+				<div class="report-card mb-4">
+					<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-text-muted mb-4">{s.market.competitionTitle}</h3>
+					<div class="grid sm:grid-cols-2 gap-3">
+						{s.market.competitors.map((c) => (
+							<div class="flex items-center gap-3 p-3 bg-elevated rounded-lg border border-border">
+								<span class="w-2 h-2 rounded-full bg-text-muted flex-shrink-0"></span>
+								<div>
+									<span class="text-[0.88rem] font-semibold text-text-primary">{c.name}</span>
+									<p class="text-[0.78rem] text-text-muted">{c.desc}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div class="report-card mb-4">
+					<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#7c3aed] mb-4">{s.market.advantagesTitle}</h3>
+					<ul class="space-y-3">
+						{s.market.advantages.map((a) => (
+							<li class="flex gap-3 text-[0.88rem] text-text-secondary">
+								<span class="w-1.5 h-1.5 rounded-full bg-[#7c3aed] mt-2 flex-shrink-0"></span>
+								{a}
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">{s.market.opportunitiesTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.market.opportunities.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">{s.market.risksTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.market.risks.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 5: Optimization Roadmap -->
+			<section id="optimization" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">05</span>
+					<div>
+						<h2 class="section-title">{s.optimization.title}</h2>
+						{s.optimization.subtitle && <p class="section-subtitle">{s.optimization.subtitle}</p>}
+					</div>
+				</div>
+
+				<!-- Short-term -->
+				<div class="mb-6">
+					<div class="flex items-center gap-3 mb-4">
+						<span class="timeline-badge bg-[#059669]">{s.optimization.shortTermLabel}</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">{s.optimization.shortTermTitle}</h3>
+					</div>
+					<div class="grid gap-3">
+						{s.optimization.shortTerm.map((item) => (
+							<div class="report-card">
+								<h4 class="text-[0.9rem] font-bold text-text-primary mb-1">{item.title}</h4>
+								<p class="text-[0.83rem] text-text-secondary leading-relaxed">{item.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<!-- Mid-term -->
+				<div class="mb-6">
+					<div class="flex items-center gap-3 mb-4">
+						<span class="timeline-badge bg-[#2563eb]">{s.optimization.midTermLabel}</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">{s.optimization.midTermTitle}</h3>
+					</div>
+					<div class="grid gap-3">
+						{s.optimization.midTerm.map((item) => (
+							<div class="report-card">
+								<h4 class="text-[0.9rem] font-bold text-text-primary mb-1">{item.title}</h4>
+								<p class="text-[0.83rem] text-text-secondary leading-relaxed">{item.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<!-- Long-term -->
+				<div>
+					<div class="flex items-center gap-3 mb-4">
+						<span class="timeline-badge bg-[#7c3aed]">{s.optimization.longTermLabel}</span>
+						<h3 class="text-[0.95rem] font-bold text-text-primary">{s.optimization.longTermTitle}</h3>
+					</div>
+					<div class="grid gap-3">
+						{s.optimization.longTerm.map((item) => (
+							<div class="report-card">
+								<h4 class="text-[0.9rem] font-bold text-text-primary mb-1">{item.title}</h4>
+								<p class="text-[0.83rem] text-text-secondary leading-relaxed">{item.desc}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 6: Future Development -->
+			<section id="future" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">06</span>
+					<div>
+						<h2 class="section-title">{s.future.title}</h2>
+						{s.future.subtitle && <p class="section-subtitle">{s.future.subtitle}</p>}
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3 mb-4">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#2563eb] mb-3">{s.future.marketExpansionTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.future.marketExpansion.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#059669] mb-3">{s.future.ecosystemTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.future.ecosystem.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-3">
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#f38020] mb-3">{s.future.businessTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.future.business.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+					<div class="report-card">
+						<h3 class="font-mono text-[0.72rem] font-semibold tracking-[0.1em] uppercase text-[#7c3aed] mb-3">{s.future.visionTitle}</h3>
+						<ul class="space-y-2 text-[0.85rem] text-text-secondary">
+							{s.future.vision.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Section 7: Conclusion -->
+			<section id="conclusion" class="mb-16 reveal">
+				<div class="section-header">
+					<span class="section-num">07</span>
+					<div>
+						<h2 class="section-title">{s.conclusion.title}</h2>
+						{s.conclusion.subtitle && <p class="section-subtitle">{s.conclusion.subtitle}</p>}
+					</div>
+				</div>
+				<div class="report-card conclusion-card">
+					{s.conclusion.paragraphs.map((p) => (
+						<p class="text-[0.92rem] text-text-secondary leading-[1.8] mb-4 last:mb-0">{p}</p>
+					))}
+				</div>
+			</section>
+
+			<!-- Back to home -->
+			<div class="text-center reveal">
+				<a href={homeHref} class="inline-flex items-center gap-2 px-6 py-3 bg-card border border-border text-text-secondary text-[0.85rem] font-medium rounded-[8px] hover:border-accent hover:text-accent transition-all duration-150">
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+					</svg>
+					{r.backHome}
+				</a>
+			</div>
+		</article>
+	</main>
+</Layout>
+
+<style>
+	.report-card {
+		background: #ffffff;
+		border: 1px solid #e0e3e8;
+		border-radius: 12px;
+		padding: 24px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	}
+
+	.conclusion-card {
+		border-left: 3px solid #7c3aed;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		margin-bottom: 20px;
+	}
+
+	.section-num {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: #f38020;
+		background: rgba(243, 128, 32, 0.08);
+		border: 1px solid rgba(243, 128, 32, 0.2);
+		border-radius: 6px;
+		padding: 4px 10px;
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+
+	.section-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #1a1e2c;
+		tracking: -0.02em;
+		line-height: 1.2;
+	}
+
+	.section-subtitle {
+		font-size: 0.82rem;
+		color: #929bb0;
+		margin-top: 2px;
+	}
+
+	.timeline-badge {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.68rem;
+		font-weight: 600;
+		color: white;
+		padding: 3px 10px;
+		border-radius: 6px;
+		flex-shrink: 0;
+	}
+
+	.toc-link {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 8px 12px;
+		border-radius: 8px;
+		text-decoration: none;
+		color: #5a6377;
+		font-size: 0.88rem;
+		font-weight: 500;
+		transition: all 150ms ease;
+	}
+
+	.toc-link:hover {
+		background: #f0f1f4;
+		color: #f38020;
+	}
+
+	.toc-num {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: #929bb0;
+		min-width: 24px;
+	}
+
+	.toc-link:hover .toc-num {
+		color: #f38020;
+	}
+</style>
