@@ -1,65 +1,59 @@
 ---
-import type { Translations } from '../i18n';
+import type { Translations, Lang } from '../i18n';
 
 interface Props {
 	t: Translations;
+	lang: Lang;
 }
-const { t } = Astro.props;
-
-const colors = ['#f38020', '#059669', '#2563eb'];
-const githubLinks = [
-	'https://github.com/chenzihui222/News-about-VC',
-	'https://github.com/chenzihui222/Reading-Notes',
-	'https://github.com/chenzihui222/zihui',
-];
+const { t, lang } = Astro.props;
 ---
 
-<section id="projects" class="relative">
+<section id="experience" class="relative">
 	<div class="max-w-[1400px] mx-auto px-8 md:px-12 py-20">
 		<div class="reveal">
 			<div class="flex items-center gap-3 mb-2">
 				<div class="h-px flex-1 max-w-[40px] bg-accent"></div>
-				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">{t.projects.label}</span>
+				<span class="font-mono text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">{t.experience.label}</span>
 			</div>
 			<h2 class="text-[2rem] md:text-[2.5rem] font-bold tracking-[-0.03em] text-text-primary mb-12">
-				{t.projects.title}<span class="text-accent">.</span>
+				{t.experience.title}<span class="text-accent">.</span>
 			</h2>
 		</div>
 
 		<div class="grid gap-4">
-			{t.projects.items.map((project, i) => (
+			{t.experience.items.map((item, i) => (
 				<a
-					href={project.link}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="reveal project-card group"
+					href={item.link}
+					class="reveal exp-card group"
 					style={`transition-delay: ${i * 0.1}s`}
 				>
 					<div class="flex items-start justify-between gap-6 flex-wrap">
 						<div class="flex-1 min-w-[280px]">
 							<div class="flex items-center gap-3 mb-3">
-								<span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${colors[i]}`}></span>
+								<span class="w-2 h-2 rounded-full flex-shrink-0" style={`background: ${item.color}`}></span>
 								<h3 class="text-[1.15rem] font-bold text-text-primary tracking-[-0.01em] group-hover:text-accent transition-colors duration-150">
-									{project.name}
+									{item.title}
 								</h3>
-								<span class="font-mono text-[0.6rem] font-semibold tracking-[0.1em] px-2 py-[2px] rounded-[4px] border" style={`color: ${colors[i]}; border-color: ${colors[i]}30; background: ${colors[i]}08`}>
-									{project.status}
+								<span class="font-mono text-[0.6rem] font-semibold tracking-[0.1em] px-2 py-[2px] rounded-[4px] border" style={`color: ${item.color}; border-color: ${item.color}30; background: ${item.color}08`}>
+									{item.type}
 								</span>
 							</div>
+							<p class="text-[0.82rem] text-text-muted mb-2 font-mono">{item.subtitle} &middot; {item.date}</p>
 							<p class="text-[0.88rem] text-text-secondary leading-relaxed mb-4 max-w-xl">
-								{project.description}
+								{item.description}
 							</p>
 							<div class="flex flex-wrap gap-2">
-								{project.tech.map((tech) => (
+								{item.tags.map((tag) => (
 									<span class="font-mono text-[0.7rem] font-medium px-3 py-[3px] bg-elevated text-text-muted rounded-[6px] border border-border">
-										{tech}
+										{tag}
 									</span>
 								))}
 							</div>
 						</div>
 						<div class="flex items-center gap-2 text-text-muted group-hover:text-accent transition-colors duration-150 self-center">
+							<span class="font-mono text-[0.72rem] opacity-0 group-hover:opacity-100 transition-opacity duration-150">{t.experience.viewReport}</span>
 							<svg class="w-4 h-4 transition-transform duration-150 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
 							</svg>
 						</div>
 					</div>
@@ -70,7 +64,7 @@ const githubLinks = [
 </section>
 
 <style>
-	.project-card {
+	.exp-card {
 		display: block;
 		position: relative;
 		background: #ffffff;
@@ -83,13 +77,13 @@ const githubLinks = [
 		cursor: pointer;
 	}
 
-	.project-card:hover {
+	.exp-card:hover {
 		border-color: #c5cad3;
 		transform: translateY(-2px);
 		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 	}
 
-	.project-card:hover::before {
+	.exp-card:hover::before {
 		content: '';
 		position: absolute;
 		left: 0;
@@ -97,7 +91,7 @@ const githubLinks = [
 		transform: translateY(-50%);
 		width: 3px;
 		height: 40%;
-		background: #f38020;
+		background: #7c3aed;
 		border-radius: 0 3px 3px 0;
 	}
 </style>

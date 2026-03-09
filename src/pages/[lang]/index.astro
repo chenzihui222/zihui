@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Projects from '../../components/Projects.astro';
+import Experience from '../../components/Experience.astro';
+import Skills from '../../components/Skills.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations, type Lang } from '../../i18n';
+
+export function getStaticPaths() {
+	return [
+		{ params: { lang: 'zh' } },
+		{ params: { lang: 'en' } },
+	];
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+---
+
+<Layout title={t.meta.title} description={t.meta.description} lang={lang}>
+	<main>
+		<Hero t={t} lang={lang} />
+		<About t={t} />
+		<Projects t={t} />
+		<Experience t={t} lang={lang} />
+		<Skills t={t} />
+		<Contact t={t} />
+		<Footer t={t} />
+	</main>
+</Layout>
